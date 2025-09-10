@@ -14,6 +14,9 @@ export default function App() {
   const inputA = useRef(null);
   const inputB = useRef(null);
 
+  const deleteInput = () => {
+  };
+
   const increase = () => {
     const a = parseInt(inputA.current.value);
     const b = parseInt(inputB.current.value);
@@ -53,10 +56,7 @@ export default function App() {
       <TextInput ref={inputB} style={styles.textInput} />
 
       <View style={{ flexDirection: 'row', marginVertical: 10 }}>
-        <TouchableOpacity
-          onPress={increase}
-          style={styles.buttonCss}
-          >
+        <TouchableOpacity onPress={increase} style={styles.buttonCss}>
           <Text style={{ color: '#fff' }}>+</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={decrease} style={styles.buttonCss}>
@@ -67,6 +67,9 @@ export default function App() {
         </TouchableOpacity>
         <TouchableOpacity onPress={divide} style={styles.buttonCss}>
           <Text style={{ color: '#fff' }}>/</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={divide} style={styles.buttonCss} onPress={deleteInput}>
+          <Text style={{ color: '#fff' }}>Xoa</Text>
         </TouchableOpacity>
       </View>
       <TextInput style={styles.textInput} value={quantity} />
