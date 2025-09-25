@@ -19,27 +19,55 @@ export default function SettingsScreen() {
         }}>
         <Image
           style={{ width: '50px', height: '60px', resizeMode: 'contain' }}
-          source={require('../assets/vs_black.png')}
+          source={require('../assets/vsblack.png')}
         />
         <Text style={{ fontSize: 16, fontWeight: 700, marginHorizontal: 10 }}>
           Điện Thoại Vsmart Joy 3 Hàng chính hãng
         </Text>
       </View>
 
-      <View style={{paddingHorizontal: 20,paddingVertical: 10}}>
+      <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
         <Text style={styles.title}>Chọn một màu bên dưới:</Text>
 
         <View style={styles.colorList}>
-          <View style={[styles.colorBox, { backgroundColor: '#ADE8F4' }]} />
-          <View style={[styles.colorBox, { backgroundColor: 'red' }]} />
-          <View style={[styles.colorBox, { backgroundColor: 'black' }]} />
-          <View style={[styles.colorBox, { backgroundColor: '#1D4ED8' }]} />
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                image: require('../assets/vsblue.png'),
+              })
+            }>
+            <View style={[styles.colorBox, { backgroundColor: '#ADE8F4' }]} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                image: require('../assets/vsred.png'),
+              })
+            }
+            >
+            <View style={[styles.colorBox, { backgroundColor: 'red' }]} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                image: require('../assets/vsblack.png'),
+              })
+            }>
+            <View style={[styles.colorBox, { backgroundColor: 'black' }]} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('ProductDetail', {
+                image: require('../assets/vssilver.png'),
+              })
+            }>
+            <View style={[styles.colorBox, { backgroundColor: '#1D4ED8' }]} />
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity
           style={styles.doneButton}
-          onPress={() => navigation.navigate('ProductDetail')}
-          >
+          onPress={() => navigation.navigate('ProductDetail')}>
           <Text style={styles.doneButtonText}>XONG</Text>
         </TouchableOpacity>
       </View>
