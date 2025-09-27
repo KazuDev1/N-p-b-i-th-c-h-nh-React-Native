@@ -1,64 +1,60 @@
-// App.js
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import * as React from 'react';
+import { View, Text, Switch, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import ProductsScreen from "./Screens/Home";
-import FavoritesScreen from "./Screens/Favorite";
-import ProductDetails from "./Screens/ProductDetail";
+const Drawer = createDrawerNavigator();
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
-
-function HomeTabs() {
+// Home Screen
+function HomeScreen() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size, focused }) => {
-          let iconName;
-          if (route.name === "Products") {
-            iconName = focused ? "list" : "list-outline";
-          } else if (route.name === "Favorites") {
-            iconName = focused ? "heart" : "heart-outline";
-          }
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-    >
-      <Tab.Screen
-        name="Products"
-        component={ProductsScreen}
-        options={{ headerShown: false }}
+    <View style={styles.container}>
+      <Text>Welcome to Home Screen!</Text>
+    </View>
+  );
+}
+
+// Profile Screen
+function ProfileScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>User Name: John Doe</Text>
+      <Text>Email: john@example.com</Text>
+    </View>
+  );
+}
+
+// Settings Screen
+function SettingsScreen() {
+  const [isEnabled, setIsEnabled] = React.useState(false);
+
+  return (
+    <View style={styles.container}>
+      <Text>Enable Notifications</Text>
+      <Switch
+        value={isEnabled}
+        onValueChange={() => setIsEnabled(!isEnabled)}
       />
-      <Tab.Screen
-        name="Favorites"
-        component={FavoritesScreen}
-        options={{ headerShown: false }}
-      />
-    </Tab.Navigator>
+    </View>
   );
 }
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* Tab chính */}
-        <Stack.Screen
-          name="Home"
-          component={HomeTabs}
-          options={{ headerShown: false }}
-        />
-
-        {/* Chi tiết sản phẩm - KHÔNG phải Tab */}
-        <Stack.Screen
-          name="ProductDetails"
-          component={ProductDetails}
-          options={{ title: "Chi tiết sản phẩm" }}
-        />
-      </Stack.Navigator>
+      <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Screen name="Home" component={HomeScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
